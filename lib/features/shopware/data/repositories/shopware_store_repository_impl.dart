@@ -10,18 +10,22 @@ class ShopwareStoreRepositoryImpl extends ShopwareStoreRepository {
 
   @override
   Future<ProductListingEntity> getShopwareProducts(String categoryId) {
-    final String endpoint = '/product-listing/$categoryId';
+    final String endpoint = '/product-listing/:categoryId';
     return _fetchMoviesFromApi(endpoint);
   }
 
   Future<ProductListingEntity> _fetchMoviesFromApi(String endpoint) async {
+    final params = {
+      'categoryId': 'a515ae260223466f8e37471d279e6406',
+    };
     final response = await dio.post(
       endpoint,
+      queryParameters: params,
       options: Options(
         headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'sw-context-token': 'YsTH5Ld8fuMZgvBzKNCZtgXNgtZAAngy',
+      'sw-access-key': 'YsTH5Ld8fuMZgvBzKNCZtgXNgtZAAngy',
       'Postman-Token': 'dc8c8ac3-2c8b-4278-8d68-e0665cbc30e4'
       },
       ),
